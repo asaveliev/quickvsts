@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "manifest_version": 2,
   "description": "Extension allowing quick access to VSTS features",
-  "homepage_url": "https://quickvsts.github.io",
+  "homepage_url": "https://asaveliev.github.io/quickvsts/",
   "icons": {
     "16": "icons/running16.png",
     "48": "icons/running48.png",
