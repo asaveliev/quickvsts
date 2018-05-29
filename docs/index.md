@@ -11,7 +11,7 @@ Supports rendering of:
 # Using Extension
 ## Adding an item
 To add one of the supported items to the quick list, visit the corresponding page and right click anywhere on the page. Then click "Add to QuickVSTS":
-[!add link](add.png)
+![add link](add.png)
 
 ## Deleting an item
 Hover over item in quick list and click delete button.
