@@ -1,0 +1,93 @@
+<!doctype html>
+<meta charset="UTF-8">
+<head>
+	<style type="text/css">
+		body, html, iframe {
+			margin: 0px;
+			padding: 0px;
+			height: 500px;
+			width: 800px;
+			border: none;
+			font-family: Helvetica, Ubuntu, Arial, sans-serif;
+		}
+		
+		iframe {
+			width: 690px;
+			left: 110px;
+			position: absolute;
+			overflow-x: hidden;
+			overflow-y: hidden;
+			box-shadow: 0 0 0 1px rgba(0,0,0,.16), 0 0 0 2px rgba(0,0,0,.04);
+		}
+
+		#pagesList {
+			width: 110px;
+			height: 500px;
+			position: absolute;
+			top: 0px;
+			left: 0px;
+			background-color: rgb(234, 234, 234)
+		}
+
+		#pagesList .page {
+			width: 110px;
+			overflow: hidden;
+			height: 45px;
+			border-bottom: 1px solid silver;
+			background-color: rgb(218, 218, 218);
+			position: relative;
+		}
+
+		#pagesList .page .icon {
+			position: relative;
+			top: 17px;
+		}
+
+		#pagesList .page .delete {
+			visibility:hidden;
+			position: absolute;
+			right: 0;
+			top: 17px;
+		}
+
+		#pagesList .page:hover .delete {
+			visibility: visible;
+		}
+
+
+		#pagesList .page a {
+			font-family: "Segoe UI VSS (Regular)","-apple-system",BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Helvetica,Ubuntu,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+			font-weight: normal;
+			font-size: 14px;
+			text-decoration: none;
+			color: black;
+			height: 40px;
+			position: absolute;
+			left: 20px;
+			overflow: hidden;
+			padding-top: 4px;
+		}
+
+		#pagesList .page .selected {
+			position: absolute;
+    		width: 110px;
+    		background-color: rgb(200, 200, 200);
+			z-index: 9999;
+		}
+	</style>
+
+	<script type="text/javascript" src="browser_action.js"></script>
+
+</head>
+
+<body>
+	<div id="pagesList">
+
+	</div>
+
+	<iframe name="pageContainer"  id="pageContainer"
+	sandbox="allow-forms allow-pointer-lock allow-scripts allow-same-origin"
+	src="" />
+
+
+</body>

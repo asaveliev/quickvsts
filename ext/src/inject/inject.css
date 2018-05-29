@@ -1,0 +1,67 @@
+/**
+ * Place your custom CSS styles here.
+ **/
+
+ .quick .dashboard-hub-content {
+    padding: 0px !important;
+    overflow-y: auto;
+    width: 684px !important;
+  }
+
+ .quick .dashboard-hub-content .gridster {
+     width: 684px !important;
+ }
+
+ .quick [command="widget-configuration"]{
+    display: none;
+ }
+
+ .quick .vss-PivotBar--bar-two-line {
+   display: none;
+ }
+
+ body.quick {
+     min-width: 684px !important;
+ }
+
+ body {
+     visibility: hidden;
+ }
+
+ html {
+   overflow: hidden;
+ }
+ 
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+::-webkit-scrollbar-button {
+  width: 0px;
+  height: 0px;
+}
+::-webkit-scrollbar-thumb {
+  background: #000000;
+  border: 0px none #ffffff;
+  border-radius: 49px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #1e4fb5;
+}
+::-webkit-scrollbar-thumb:active {
+  background: #153880;
+}
+::-webkit-scrollbar-track {
+  background: #b0b0b0;
+  border: 0px none #ffffff;
+  border-radius: 50px;
+}
+::-webkit-scrollbar-track:hover {
+  background: #666666;
+}
+::-webkit-scrollbar-track:active {
+  background: #797979;
+}
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
