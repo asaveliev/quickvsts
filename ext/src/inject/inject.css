@@ -9,7 +9,10 @@
   }
 
  .quick .dashboard-hub-content .gridster {
-     width: 684px !important;
+  width: 677px !important;
+ }
+ .quick .external-hub-shim-container {
+     width: 690px !important;
  }
 
  .quick [command="widget-configuration"]{
@@ -21,7 +24,7 @@
  }
 
  body.quick {
-     min-width: 684px !important;
+     min-width: 690px !important;
  }
 
  body {

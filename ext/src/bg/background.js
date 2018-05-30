@@ -1,6 +1,5 @@
 
 function removeSecurityHeader(details) {
-      console.log(details);
       
       for (let i = 0; i < details.responseHeaders.length; i++) {
         if (details.responseHeaders[i].name.toLowerCase() === 'x-frame-options') {
@@ -25,7 +24,7 @@ function registerPage(){
       }
 
       if (url.indexOf("?") > 0){
-        url = url.substring(0,url.indexOf("?")-1);
+        url = url.substring(0,url.indexOf("?"));
       }
       let dashboardId = extractDashboardId(url);
       let boardName = extractBoardName(url);
@@ -76,7 +75,7 @@ function extractQueryId(url){
 }
 
 function extractBoardName(url){
-  let boardRx = /https:\/\/.*\.visualstudio.com\/.*\/_boards\/board\/.+\/(.+)/i; // project/_boards/board/teamname/boardname
+  let boardRx = /https:\/\/.*\.visualstudio.com\/.*\/(?:_boards\/board\/.+|_backlogs\/board)\/([^?]+)/i; // project/_boards/board/teamname/boardname
   let matches = url.match(boardRx);
   if (matches){
     return matches[1];

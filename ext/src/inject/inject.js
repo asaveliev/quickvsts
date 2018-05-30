@@ -12,7 +12,7 @@
 	}
 	
 	var extractBoardName = function(url){
-		let boardRx = /https:\/\/.*\.visualstudio.com\/.*\/_boards\/board\/.+\/(.+)/i; // project/_boards/board/teamname/boardname
+		let boardRx = /https:\/\/.*\.visualstudio.com\/.*\/(?:_boards\/board\/.+|_backlogs\/board)\/([^?]+)/i; // project/_boards/board/teamname/boardname
 		let matches = url.match(boardRx);
 		if (matches){
 		  return matches[1];
@@ -65,6 +65,11 @@
 		if (boards.length > 0){
 			board = boards[0];
 		}
+		let queryResultsItems = document.getElementsByClassName("query-results-view");
+		let queryResults = null;
+		if (queryResultsItems.length > 0){
+			queryResults = queryResultsItems[0];
+		}
 
 		if (document.documentElement && !styleInjected){
 			let path = chrome.extension.getURL('src/inject/inject.css');
@@ -83,12 +88,11 @@
 			}
 		}
 
-		if (grid || board){
+		if (grid || board || queryResults){
 			clearInterval(readyStateCheckInterval);
 		}
 
 		if (grid) {
-			clearInterval(readyStateCheckInterval);
 
 			let log = "";
 

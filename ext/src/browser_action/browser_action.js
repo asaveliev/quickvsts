@@ -26,7 +26,7 @@ window.onload = function(){
 
 
                 let link = document.createElement("a");
-                link.setAttribute("href",appendFullscreen(page.url));
+                link.setAttribute("href",appendFullscreen(page));
                 link.innerText = page.title;
                 link.setAttribute("target","pageContainer");
                 link.setAttribute("title",page.title);
@@ -45,7 +45,7 @@ window.onload = function(){
             }
 
             if (data.pages.length > 0) {
-                document.getElementById("pageContainer").setAttribute("src",appendFullscreen(data.pages[0].url));
+                document.getElementById("pageContainer").setAttribute("src",appendFullscreen(data.pages[0]));
             }
         }
     });  
@@ -66,8 +66,18 @@ function deletePage(event){
     });
 }
 
-function appendFullscreen(url){
-    if (url.indexOf("?") < 0) url += "?";
-    url += "__rt=chromeless#quickvsts=true";
+function appendFullscreen(page){
+    let url = page.url;
+    if (url.indexOf("?") < 0)url += "?";
+    if (page.pagetype == "board"){
+        url += "embedded=true&fullScreen=true";
+    }
+    else if (page.pagetype == "dashboard"){
+        url += "__rt=chromeless";
+    }
+    else if (page.pagetype == "query"){
+        url += "fullScreen=true";
+    }
+    url += "#quickvsts=true";
     return url;
 }
