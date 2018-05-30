@@ -1,6 +1,7 @@
 <!doctype html>
 <meta charset="UTF-8">
 <head>
+	<title>Quick VSTS</title>
 	<style type="text/css">
 		body, html, iframe {
 			margin: 0px;
@@ -17,7 +18,7 @@
 			position: absolute;
 			overflow-x: hidden;
 			overflow-y: hidden;
-			box-shadow: 0 0 0 1px rgba(0,0,0,.16), 0 0 0 2px rgba(0,0,0,.04);
+			box-shadow: -2px 0 0 0 rgba(0,0,0,.16);
 		}
 
 		#pagesList {
@@ -38,6 +39,10 @@
 			position: relative;
 		}
 
+		#pagesList .page:hover, #pagesList .page.active {
+			background-color: rgb(200, 200, 200);
+		}
+
 		#pagesList .page .icon {
 			position: relative;
 			top: 17px;
@@ -48,6 +53,7 @@
 			position: absolute;
 			right: 0;
 			top: 17px;
+			cursor: pointer;
 		}
 
 		#pagesList .page:hover .delete {

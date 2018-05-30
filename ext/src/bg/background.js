@@ -1,3 +1,13 @@
+let _AnalyticsCode = 'UA-120142459-1';
+
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+    
+  ga('create', _AnalyticsCode, 'auto');
+  ga('set', 'checkProtocolTask', function(){ /* nothing */ });
+
 
 function removeSecurityHeader(details) {
       
@@ -44,6 +54,8 @@ function registerPage(){
           existingItem.title = tab.title;
           existingItem.pagetype = pageType;
         }
+        
+        ga('send', 'event', 'Page', 'register');
         
         chrome.storage.sync.set({"pages": pages},function(){
         });

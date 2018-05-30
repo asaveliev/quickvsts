@@ -1,6 +1,6 @@
 {
   "name": "Quick VSTS",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "manifest_version": 2,
   "description": "Extension allowing quick access to VSTS features",
   "homepage_url": "https://asaveliev.github.io/quickvsts/",
@@ -45,5 +45,6 @@
       "run_at": "document_start"
     }
   ],
+  "content_security_policy": "script-src 'self' https://www.google-analytics.com/; object-src 'self'",  
   "web_accessible_resources": ["src/inject/inject.css","src/browser_action/browser_action.js"]
 }
