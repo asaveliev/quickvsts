@@ -15,7 +15,7 @@ window.onload = function(){
     
 
     chrome.storage.sync.get('pages', function(data) {
-        if (data.pages && Array.isArray(data.pages)) {
+        if (data.pages && Array.isArray(data.pages) && data.pages.length > 0) {
 
             let container = document.getElementById("pagesList");
 
@@ -66,9 +66,12 @@ window.onload = function(){
                 container.appendChild(element);
             }
 
-            if (data.pages.length > 0) {
-                document.getElementById("pageContainer").setAttribute("src",appendFullscreen(data.pages[0]));
-            }
+            document.getElementById("pageContainer").setAttribute("src",appendFullscreen(data.pages[0]));
+        }
+        else {
+            document.getElementById("pagesList").style.display = "none";
+            document.getElementById("pageContainer").style.display = "none";
+            document.getElementById("emptyExperience").style.display = "block";
         }
     });  
 }

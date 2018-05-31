@@ -80,6 +80,13 @@
     		background-color: rgb(200, 200, 200);
 			z-index: 9999;
 		}
+
+		#emptyExperience {
+			display: none;
+			position: absolute;
+			top: 240px;
+			left: 200px;
+		}
 	</style>
 
 	<script type="text/javascript" src="browser_action.js"></script>
@@ -87,6 +94,11 @@
 </head>
 
 <body>
+
+	<div id="emptyExperience">
+		Your pages list is empty. Visit a VSTS dashboard, query or board to add it to the list. 
+	</div>
+
 	<div id="pagesList">
 
 	</div>
