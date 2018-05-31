@@ -7,6 +7,7 @@ Supports rendering of:
 * Kanban boards in chrome-less mode
 * Work Item Queries in chrome-less mode
 
+Install at https://chrome.google.com/webstore/detail/quick-vsts/fllgkonafgljadeomhfpnbanfmaimcbp
 
 # Using Extension
 ## Adding an item
