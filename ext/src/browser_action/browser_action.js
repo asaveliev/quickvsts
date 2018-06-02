@@ -24,7 +24,12 @@ window.onload = function(){
             for(let page of data.pages){
                 let element = document.createElement("div");
                 element.classList.add("page");
- 
+                element.setAttribute("draggable","true");
+                element.addEventListener("dragenter",dragEnter);
+                element.addEventListener("dragstart",dragStart);
+                element.addEventListener("dragend",dragEnd);
+                element.setAttribute("data-id",page.id);
+
                 if (firstRow){
                     firstRow = false;
                     element.classList.add("active");
@@ -43,6 +48,7 @@ window.onload = function(){
                 let iconElement = document.createElement("span");
                 iconElement.classList.add("icon");
                 iconElement.innerText = icon;
+                iconElement.setAttribute("draggable","false");
                 element.appendChild(iconElement);
 
 
@@ -52,6 +58,7 @@ window.onload = function(){
                 link.setAttribute("target","pageContainer");
                 link.setAttribute("title",page.title);
                 link.addEventListener("click",activatePage);
+                link.setAttribute("draggable","false");
                 element.appendChild(link);
 
 
@@ -60,6 +67,7 @@ window.onload = function(){
                 deleteElement.setAttribute("data-id",page.id);
                 deleteElement.innerText = "❌";
                 deleteElement.addEventListener("click",deletePage);
+                deleteElement.setAttribute("draggable","false");
                 element.appendChild(deleteElement);
                 
                 
@@ -75,6 +83,55 @@ window.onload = function(){
         }
     });  
 }
+
+let draggedElement;
+
+function dragStart(event) {
+    draggedElement = event.target;
+    event.dataTransfer.effectAllowed = 'move';
+}
+
+function dragEnter(event){
+    let targetPage = event.target.closest(".page");
+    if (isTargetBefore(draggedElement, targetPage)) {
+        targetPage.parentNode.insertBefore(draggedElement, targetPage);
+    }
+    else {
+        targetPage.parentNode.insertBefore(draggedElement, targetPage.nextSibling);
+    }
+}
+
+function dragEnd(){
+    let pages = document.getElementById("pagesList");
+    chrome.storage.sync.get('pages', function(data) {
+        let newPages = [];
+        for(let page of pages.children){
+            let id = page.getAttribute("data-id");
+            for(let i = 0; i < data.pages.length; i++) {
+                if(data.pages[i].id === id) {
+                    newPages.push(data.pages[i]);
+                }
+            }
+            chrome.storage.sync.set({"pages": newPages});                
+        }
+    });
+}
+
+function isTargetBefore(source, destination) {
+    if (source.parentNode === destination.parentNode) { // Make sure both have same parent, so you don't drag it out
+        let element = source; 
+        while(true)
+        {
+            // Keep going to previous sibling until we reach empty of ourselves
+            if (!element) break;
+            if (element === destination) { 
+                return true;
+            }
+            element = element.previousSibling; 
+        }
+    }
+    return false;
+} 
 
 function activatePage(event){
     let pages = document.getElementsByClassName("page");
