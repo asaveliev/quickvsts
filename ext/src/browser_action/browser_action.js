@@ -42,6 +42,9 @@ window.onload = function(){
                 else if (page.pagetype == "query"){
                     icon = "🔎";
                 }
+                else if (page.pagetype == "pullrequests"){
+                    icon = "😵";
+                }
                 else {
                     icon = "🏭";
                 }
@@ -166,7 +169,7 @@ function appendFullscreen(page){
     if (page.pagetype == "board"){
         url += "embedded=true&fullScreen=true";
     }
-    else if (page.pagetype == "dashboard"){
+    else if (page.pagetype == "dashboard" || page.pagetype == "pullrequests"){
         url += "__rt=chromeless";
     }
     else if (page.pagetype == "query"){

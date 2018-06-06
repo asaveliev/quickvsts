@@ -33,12 +33,24 @@
 		}
 	  }	
 
+	  var extractRepoName = function(url){
+		let repoRx = /https:\/\/.*\.visualstudio.com\/.*\/_git\/([^\/]+)\/pullrequests.*/i;
+		let matches = url.match(repoRx);
+		if (matches){
+		  return matches[1];
+		}
+		else {
+		  return null;
+		}
+	  }	
+	  
 	var styleInjected = false;
 
 	var dashboardId = extractDashboardId(document.location.href);
 	var boardName = extractBoardName(document.location.href);
 	var queryId = extractQueryId(document.location.href);
-	if (!(!!dashboardId || !!boardName || !!queryId)) return;
+	var repoName = extractRepoName(document.location.href);
+	if (!(!!dashboardId || !!boardName || !!queryId || !!repoName)) return;
 
 	if (document.location.href.indexOf("#quickvsts=true") < 0 ) 
 	{
@@ -60,15 +72,23 @@
 		let readyStateCheckInterval = setInterval(function() {
 	
 		let grid = document.getElementById("widgets-container");
-		let boards = document.getElementsByClassName("board-view-container");
-		let board = null;
-		if (boards.length > 0){
-			board = boards[0];
+
+		let boardContainerQuery = document.getElementsByClassName("board-view-container");
+		let boardContainer = null;
+		if (boardContainerQuery.length > 0){
+			boardContainer = boardContainerQuery[0];
 		}
-		let queryResultsItems = document.getElementsByClassName("query-results-view");
-		let queryResults = null;
-		if (queryResultsItems.length > 0){
-			queryResults = queryResultsItems[0];
+
+		let queryResultsItemsContainerQuery = document.getElementsByClassName("query-results-view");
+		let queryResultsItemsContainer = null;
+		if (queryResultsItemsContainerQuery.length > 0){
+			queryResultsItemsContainer = queryResultsItemsContainerQuery[0];
+		}
+
+		let pullRequestsContainerQuery = document.getElementsByClassName("versioncontrol-pullrequest-list-view");
+		let pullRequestsContainer = null;
+		if (pullRequestsContainerQuery.length > 0){
+			pullRequestsContainer = pullRequestsContainerQuery;
 		}
 
 		if (document.documentElement && !styleInjected){
@@ -88,7 +108,7 @@
 			}
 		}
 
-		if (grid || board || queryResults){
+		if (grid || boardContainer || queryResultsItemsContainer || pullRequestsContainer){
 			clearInterval(readyStateCheckInterval);
 		}
 

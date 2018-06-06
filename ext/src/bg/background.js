@@ -39,12 +39,16 @@ function registerPage(){
       let dashboardId = extractDashboardId(url);
       let boardName = extractBoardName(url);
       let queryId = extractQueryId(url);
-      if (dashboardId || boardName || queryId){
-        let key = dashboardId || queryId || url; // either use dashboard guid, query ID or full board URL as key
+      let repoName = extractRepoName(url);
+      if (dashboardId || boardName || queryId || repoName){
+        let key = dashboardId || queryId || url; // either use dashboard guid, query ID or full URL (for PRs and boards) as key
         let existingItem = pages.find(function (page) { return page.id === key; });
 
         let pageType = "";
-        if (dashboardId) {pageType = "dashboard";} else if (queryId) { pageType="query"} else {pageType = "board"};
+        if (dashboardId) { pageType = "dashboard"; } 
+        else if (queryId) { pageType = "query"; } 
+        else if (repoName) { pageType = "pullrequests"; }
+        else {pageType = "board"};
 
         if (!existingItem) {
           pages.push({id:key,url:url,title:tab.title,pagetype:pageType});
@@ -55,7 +59,7 @@ function registerPage(){
           existingItem.pagetype = pageType;
         }
         
-        ga('send', 'event', 'Page', 'register');
+        ga('send', 'event', 'Page', 'register', pageType);
         
         chrome.storage.sync.set({"pages": pages},function(){
         });
@@ -97,6 +101,17 @@ function extractBoardName(url){
   }
 }
 
+var extractRepoName = function(url){
+  let repoRx = /https:\/\/.*\.visualstudio.com\/.*\/_git\/([^\/]+)\/pullrequests.*/i;
+  let matches = url.match(repoRx);
+  if (matches){
+    return matches[1];
+  }
+  else {
+    return null;
+  }
+}	
+
 let targetPage = "https://*.visualstudio.com/*";
 
 chrome.webRequest.onHeadersReceived.addListener(
@@ -127,7 +142,8 @@ chrome.contextMenus.create({
   "documentUrlPatterns": [
     "https://*.visualstudio.com/*/_boards/board/*", // Matches project/_boards/board/boardname
     "https://*.visualstudio.com/*/_dashboards/*/*", // Matches project/_dashboards/team/dashboardguid
-    "https://*.visualstudio.com/*/_queries/query/*"
+    "https://*.visualstudio.com/*/_queries/query/*",
+    "https://*.visualstudio.com/*/_git/*/pullrequests*"
   ]
  });
 
