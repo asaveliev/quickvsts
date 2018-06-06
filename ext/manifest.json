@@ -1,6 +1,6 @@
 {
   "name": "Quick VSTS",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "manifest_version": 2,
   "description": "Extension allowing quick access to VSTS features",
   "homepage_url": "https://asaveliev.github.io/quickvsts/",
