@@ -25,7 +25,7 @@ function removeSecurityHeader(details) {
 }
 
 function registerPage(){
-  chrome.tabs.getSelected(null,function(tab) {
+  var callback = function(tab) {
     let url = tab.url;
     chrome.storage.sync.get('pages', function(currentPages) {
       let pages = [];
@@ -61,7 +61,14 @@ function registerPage(){
         });
       }
     });
-  });
+  }
+
+  if (chrome.tabs.getSelected){
+    chrome.tabs.getSelected(null,callback);
+  }
+  else {
+    browser.tabs.query({currentWindow: true, active: true}).then(function(tabs){callback(tabs[0]);});
+  }
 }
 
 function extractDashboardId(url){
