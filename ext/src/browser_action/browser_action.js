@@ -107,7 +107,7 @@ function appendFullscreen(page){
     let url = page.url;
     if (url.indexOf("?") < 0)url += "?";
     if (page.pagetype == "board"){
-        url += "embedded=true&fullScreen=true";
+        url += "fullScreen=true";
     }
     else if (page.pagetype == "dashboard"){
         url += "__rt=chromeless";
