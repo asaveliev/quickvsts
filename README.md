@@ -6,6 +6,7 @@ Supports rendering of:
 * Dashboards in responsive mode
 * Kanban boards in chrome-less mode
 * Work Item Queries in chrome-less mode
+* Git repository pull requests
 
 Install at https://chrome.google.com/webstore/detail/quick-vsts/fllgkonafgljadeomhfpnbanfmaimcbp
 

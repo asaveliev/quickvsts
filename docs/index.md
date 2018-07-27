@@ -1,3 +1,7 @@
+---
+page.title: Quick VSTS
+---
+
 # Quick VSTS
 
 Chrome extension giving quick access to VSTS features
@@ -6,6 +10,7 @@ Supports rendering of:
 * Dashboards in responsive mode
 * Kanban boards in chrome-less mode
 * Work Item Queries in chrome-less mode
+* Git repository pull requests
 
 Install at [Chrome Store](https://chrome.google.com/webstore/detail/quick-vsts/fllgkonafgljadeomhfpnbanfmaimcbp)
 
@@ -17,6 +22,11 @@ To add one of the supported items to the quick list, visit the corresponding pag
 ## Deleting an item
 Hover over item in quick list and click delete button.
 
+## Reordering items
+The extension supports drag & drop, so just reorder your pages using the mouse
+
+## Searching items
+Extension registers ```vsts``` shortcut, typing "vsts foo" will search for a page with "foo" in its title
 
 
 (c) Artem Saveliev 2018
